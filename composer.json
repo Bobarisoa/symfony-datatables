@@ -1,0 +1,19 @@
+{
+    "name": "prolyfix/symfony-datatables-bundle",
+    "description": "data Cleansing bundle",
+    "license": "proprietary",
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "Marc Baudot",
+            "email": "marc.baudot@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Prolyfix\\SymfonyDatatablesBundle\\": "src",
+            "Prolyfix\\SymfonyDatatablesBundleTests\\": "tests"
+        }
+    }
+}
+

@@ -1,0 +1,35 @@
+<div class="row datatablesFilter">
+	<div class="col-md-11">
+        <div class="row">
+		{% for filter in filters %}
+			{% if filter.type == "text" %}
+            	<div class="col-md-4">{{filter.label}}: <input type="{{filter.type}}" class="filterTable" data-searchfield="{{filter.searchField}}"></input></div>
+			{% elseif filter.type == "choice" %}
+				<div class="col-md-4">{{filter.label}}: 
+					<select class="filterTable" data-searchfield="{{filter.searchField}}">
+						<option value=""> Choisissez </option>
+						{% for key,option in filter.choices %}
+						<option value="{{key}}"> {{option}}</option>
+						{% endfor %}
+					</select>
+				</div>
+			{% elseif filter.type == "entity" %}
+				{% set values = generateChoiceFromEntity(filter) %}
+				<div class="col-md-4">{{filter.label}}: 
+					<select class="filterTable" data-searchfield="{{filter.searchField}}">
+						<option value=""> Choisissez </option>
+						{% for key,option in values %}
+						<option value="{{key}}"> {{option}}</option>
+						{% endfor %}
+					</select>
+				</div>				
+			{% endif %}
+        {% endfor %}
+        </div>
+	</div>
+	<div class="col-md-1">
+		<div class="btn btn-sm btn-secondary" onclick="filterDatatables()" data-id="history">
+			Chercher
+		</div>
+	</div>
+</div>
