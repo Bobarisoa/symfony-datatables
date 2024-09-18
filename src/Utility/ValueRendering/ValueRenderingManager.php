@@ -130,10 +130,15 @@ class ValueRenderingManager {
         
     }
     
-    public function __construct( EntityManagerInterface $em, UrlGeneratorInterface $router, TranslatorInterface $translator ,?array $pbf = null, ) {
+    public function __construct( EntityManagerInterface $em, UrlGeneratorInterface $router, TranslatorInterface $translator ,?array $pbf = null) {
         $this->importsRendering = $pbf;
         $this->em = $em;
         $this->router = $router;
         $this->translator = $translator;
+    }
+
+    public function translate(?string $text = null): string
+    {
+        return $this->translator->trans($text);
     }
 }
