@@ -83,7 +83,7 @@ class DatatablesConverter
         $this->router = $router;
         $this->em = $em;
         //doublon
-        $this->valueRenderingManager = new ValueRenderingManager( $this->em, $pbf->get('valueRendering'), $this->router, $this->translator);
+        $this->valueRenderingManager = new ValueRenderingManager( $this->em, $this->router, $this->translator, $pbf->get('valueRendering'));
         $this->parameterBagInterface = $pbf;
         $this->security = $security;
         
@@ -92,7 +92,7 @@ class DatatablesConverter
     public function render(array $entities, $isExport):array
     {
         $output = [];
-        $renderingManager = new ValueRenderingManager($this->em,$this->parameterBagInterface->get('valueRendering'), $this->router, $this->translator);
+        $renderingManager = new ValueRenderingManager($this->em, $this->router, $this->translator, $this->parameterBagInterface->get('valueRendering'));
         $ar = new ActionRendering($this->router, $this->security, $this->parameterBagInterface);
 
         $renderingManager->init();

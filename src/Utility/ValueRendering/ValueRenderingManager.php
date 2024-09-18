@@ -14,6 +14,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\Router;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Description of ValueRenderingManager
@@ -25,6 +26,8 @@ class ValueRenderingManager {
     public $valueType = [];
     private $importsRendering;
     private $container;
+
+    private $translator;
     private $em;
 
     private $router;
@@ -41,6 +44,10 @@ class ValueRenderingManager {
     public function getRouter(): UrlGeneratorInterface
     {
         return $this->router;
+    }
+    public function getTranslator(): TranslatorInterface
+    {
+        return $this->translator;
     }
     public function getType($entity, $key): string
     {
@@ -123,9 +130,10 @@ class ValueRenderingManager {
         
     }
     
-    public function __construct( EntityManagerInterface $em, ?array $pbf = null, UrlGeneratorInterface $router) {
+    public function __construct( EntityManagerInterface $em, UrlGeneratorInterface $router, TranslatorInterface $translator ,?array $pbf = null, ) {
         $this->importsRendering = $pbf;
         $this->em = $em;
         $this->router = $router;
+        $this->translator = $translator;
     }
 }
